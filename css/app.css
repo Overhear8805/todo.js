@@ -1,0 +1,25 @@
+body{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.input-container{
+    background: #fffafa;
+}
+
+.subtitle{
+    padding-bottom: 15px;
+}
+
+.entry{
+
+}
+
+p {
+    padding: 10px;
+} 
+
+.list-button {
+}

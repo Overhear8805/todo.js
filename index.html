@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="noteApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Todo.js</title>
+
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="css/app.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="center-block" role="document">
+    
+    <!-- Header intro -->
+    <div class="page-header container">
+        <h1>Todo.js</h1>
+    </div>
+    <div class="jumbotron container">
+        <p class="subtitle"> Quickly save notes and tasks in volatile memory! </p>
+        <p> <a class="btn btn-primary btn-lg" href="#note" role="button">Add a note</a>
+    </div>
+
+
+    <!-- Notes -->
+    <div class="list-container container panel panel-default" ng-controller="NotePrintController">
+        <h2 class="panel-heading"> Notes </h2>
+        <div class="container" id="note" ng-controller="NoteInputController">
+            <div class="input-group">
+                <span class="input-group-addon glyphicon glyphicon-pencil"></span>
+                <input id="noteinput" type="text" class="form-control" placeholder="Note">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-info btn-primary" ng-click="saveNote()">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body">
+             <li class="list-group-item" ng-repeat="_note in notes">
+                 <span id="note_date" class="note date entry small">{{_note.date | date:'medium'}}</span>
+                 <br>
+                 <span id="note_text" class="note text entry lead">{{_note.text}}</span>
+                 <br>
+                <button ng-click="remove($index)" type="button" class="list-button btn btn-default btn-xs">Remove</button>
+             </li>
+             <p>You got <span class="badge">{{notes.length}}</span> note(s)</p>
+
+        </div>
+    </div>
+
+    <!-- Todo -->
+    <div class="list-container container panel panel-default" ng-controller="TaskPrintController">
+        <h2 class="panel-heading"> Todo </h2>
+        <div class="container" id="task" ng-controller="TaskInputController">
+        <div class="input-group">
+            <span class="input-group-addon glyphicon glyphicon-pushpin"></span>
+            <input id="taskinput" type="text" class="form-control" placeholder="Task">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-info btn-primary" ng-click="saveTask()">Save</button>
+            </div>
+        </div>
+        </div>
+        
+        <div class="panel-body">
+            <li class="list-group-item" ng-repeat="_task in tasks | orderBy:orderProp">
+                <span id="task_date" class="task date entry small">{{_task.date | date:'medium'}}</span>
+                <br>
+                <span id="task_text" class="task text entry lead">{{_task.text}}</span>
+                <br>
+                <!-- <button ng-click="edit($index)" type="button" class="list-button btn btn-default btn-xs">Edit</button>-->
+                <button ng-click="remove($index)" type="button" class="list-button btn btn-default btn-xs">Remove</button>
+            </li>
+            <p>You got <span class="badge">{{tasks.length}}</span> task(s)</p>
+        </div>
+    </div>
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Angular -->
+    <script src="bower_components/angular/angular.js"></script>
+    <!-- Custom js -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
